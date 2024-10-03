@@ -1,0 +1,11 @@
+resource "aws_launch_configuration" "app_lc" {
+  name          = "app_lc"
+  image_id     = "ami-085f9c64a9b75eed5" # Update to the latest Amazon Linux 2 AMI for us-east-1
+  instance_type = "t2.micro"
+  security_groups = [aws_security_group.allow_http.id]
+  key_name      = "ohio" # Replace with your key pair name
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
